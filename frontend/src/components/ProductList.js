@@ -1,42 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import { Product } from "./index";
 import useStyles from "../styles/productList";
-
-const products = [
-  {
-    id: 1,
-    name: "Shoes",
-    description: "Running shoes.",
-    imgUrl:
-      "https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
-    price: "$5",
-  },
-  {
-    id: 2,
-    name: "Macbook",
-    description: "Apple macbook.",
-    imgUrl:
-      "https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
-    price: "$5",
-  },
-];
+// import { products } from "../data";
+import { useFetchData } from "../hook/useFetchData";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../actions/productActions";
 
 const ProductList = () => {
   const classes = useStyles();
+
+  // const { products } = useFetchData();
+  const productList = useSelector((state) => state.productList);
+
+  const { products, loading, error } = productList;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(listProducts());
+    return () => {};
+  }, []);
+
   return (
-    <main className={classes.content}>
-      <div className={classes.toolbar} />
-      <Grid container justify="center" spacing={4}>
-        {products.map((product) => {
-          return (
-            <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-              <Product product={product} />
-            </Grid>
-          );
-        })}
-      </Grid>
-    </main>
+    <>
+      {loading ? (
+        <div>Loading</div>
+      ) : error ? (
+        { error }
+      ) : (
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Grid container justify="center" spacing={4}>
+            {products.map((product) => {
+              return (
+                <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
+                  <Product product={product} />
+                </Grid>
+              );
+            })}
+          </Grid>
+        </main>
+      )}
+    </>
   );
 };
 

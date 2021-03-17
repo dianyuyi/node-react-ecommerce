@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardMedia,
@@ -12,26 +13,36 @@ import useStyles from "../styles/product";
 
 const Product = ({ product }) => {
   const classes = useStyles();
-  const { id, name, description, imgUrl, price } = product;
+  const { id, name, description, imgUrl, price, rating } = product;
   return (
     <Card className={classes.root}>
       <CardMedia
+        component={Link}
+        to={`/product/${id}`}
         className={classes.media}
         image={imgUrl}
         title={name}
       ></CardMedia>
       <CardContent>
-        <div className={classes.CardContent}>
-          <Typography variant="h5" gutterBottom>
+        <div className={classes.cardContent}>
+          <Typography
+            variant="h5"
+            color="textPrimary"
+            gutterBottom
+            className={classes.productName}
+            component={Link}
+            to={`/product/${id}`}
+          >
             {name}
           </Typography>
-          <Typography variant="h5">{price}</Typography>
+          <Typography variant="h5">$ {price}</Typography>
         </div>
         <Typography
           dangerouslySetInnerHTML={{ __html: description }}
           variant="body2"
           color="textSecondary"
         ></Typography>
+        <Typography variant="h6">Rating {rating}</Typography>
       </CardContent>
       <CardActions disableSpacing className={classes.cardActions}>
         <IconButton aria-label="Add to Cart">

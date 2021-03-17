@@ -15,11 +15,11 @@ const Header = () => {
   const classes = useStyles();
 
   const openMenu = () => {
-    document.querySelector(".sidebar").classList.add("open");
+    // document.querySelector(".sidebar").classList.add("open");
   };
-  const closeMenu = () => {
-    document.querySelector(".sidebar").classList.remove("open");
-  };
+  // const closeMenu = () => {
+  //   document.querySelector(".sidebar").classList.remove("open");
+  // };
   return (
     <AppBar className={classes.header}>
       <Toolbar>
