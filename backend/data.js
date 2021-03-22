@@ -1,7 +1,7 @@
 export default {
   products: [
     {
-      id: 1,
+      _id: 1,
       name: "Shoes",
       category: "shoes",
       description: "Running shoes.",
@@ -11,9 +11,10 @@ export default {
       brand: "Nike",
       rating: 4.5,
       numReview: 8,
+      countInStock: 6,
     },
     {
-      id: 2,
+      _id: 2,
       name: "Macbook",
       category: "notebook",
       description: "Apple macbook.",
@@ -23,9 +24,10 @@ export default {
       brand: "Nike",
       rating: 4.5,
       numReview: 8,
+      countInStock: 0,
     },
     {
-      id: 3,
+      _id: 3,
       name: "Chair",
       category: "chair",
       description: "note 3.",
@@ -35,6 +37,7 @@ export default {
       brand: "Nike",
       rating: 4.5,
       numReview: 8,
+      countInStock: 4,
     },
   ],
 };

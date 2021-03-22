@@ -13,12 +13,12 @@ import useStyles from "../styles/product";
 
 const Product = ({ product }) => {
   const classes = useStyles();
-  const { id, name, description, imgUrl, price, rating } = product;
+  const { _id, name, description, imgUrl, price, rating } = product;
   return (
     <Card className={classes.root}>
       <CardMedia
         component={Link}
-        to={`/product/${id}`}
+        to={`/product/${_id}`}
         className={classes.media}
         image={imgUrl}
         title={name}
@@ -31,7 +31,7 @@ const Product = ({ product }) => {
             gutterBottom
             className={classes.productName}
             component={Link}
-            to={`/product/${id}`}
+            to={`/product/${_id}`}
           >
             {name}
           </Typography>
